@@ -1,1 +1,1 @@
-# deteccao_discurso_odio_deputados
+# detecçao de discurso de odio
