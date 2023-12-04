@@ -1,1 +1,1 @@
-# detecçao de discurso de odio
+# detecção de discurso de odio
