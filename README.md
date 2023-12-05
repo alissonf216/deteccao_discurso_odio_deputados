@@ -19,6 +19,6 @@ Posteriormente, aplicou-se o **GridSearchCV** para o ajuste de hiperparâmetros 
 ### Conclusão
 Este trabalho não só demonstra a aplicabilidade do PLN na análise de discursos políticos, mas também destaca a importância de técnicas de aprendizado de máquina na identificação de linguagem ofensiva e de ódio, contribuindo para um ambiente político mais saudável e respeitoso.
 
-![Insira a imagem aqui](link-da-imagem-3)
+![Insira a imagem aqui]([link-da-imagem-3](https://github.com/alissonf216/deteccao_discurso_odio_deputados/blob/main/img/matriz_svm_otimizada.png))
 
 Palavras-chave: Processamento de linguagem natural, aprendizado de máquina, Discurso de ódio, classificação, Discurso Político.
