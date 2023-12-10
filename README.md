@@ -1,3 +1,4 @@
+
 # Estudo sobre PLN e Identificação de Discursos Ofensivos em Contextos Políticos
 
 ## Palavras-chave
@@ -7,10 +8,10 @@
 Este estudo explora a aplicação de técnicas avançadas de **Processamento de Linguagem Natural (PLN)** na identificação de discursos de ódio e ofensivos em falas de deputados federais brasileiros. Utilizou-se uma base de dados composta por discursos parlamentares, na qual foi implementado e comparado quatro algoritmos de aprendizado de máquina - **Naive Bayes**, **SVM (Support Vector Machines)**, **Random Forest** e **Logistic Regression** - com vetorização via técnica de **TF-IDF (Term Frequency-Inverse Document Frequency)**.
 
 ### Avaliação de Desempenho dos Algoritmos
-Os algoritmos foram avaliados com base em suas métricas de desempenho, onde o **SVM** se destacou com um **f1-score** de `0.95` para a label 0 (não ofensivo) e `0.94` para a label 1 (ofensivo).
+Os algoritmos foram avaliados com base em suas métricas de desempenho, onde o **SVM** se destacou com um **f1-score** de `0.97` para a label 0 (não ofensivo) e `0.97` para a label 1 (ofensivo).
 
 ### Ajuste de Hiperparâmetros e Resultados
-Posteriormente, aplicou-se o **GridSearchCV** para o ajuste de hiperparâmetros no modelo SVM, visto que este foi o modelo que melhor performou. Isso resultou em uma melhoria substancial, alcançando um f1-score equilibrado para ambas as labels de `0.97`. Este resultado evidencia a eficácia na classificação precisa de discursos ofensivos, contribuindo significativamente para a moderação e análise de conteúdo em contextos políticos.
+Aplicou-se o **GridSearchCV** para o ajuste de hiperparâmetros de todos os modelos e cross validação. Os resultado evidencia a eficácia na classificação precisa de discursos ofensivos, contribuindo significativamente para a moderação e análise de conteúdo em contextos políticos.
 
 ### Visualização de Dados: Nuvem de Palavras do Dataset
 
