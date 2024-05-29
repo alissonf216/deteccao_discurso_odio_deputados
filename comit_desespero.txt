@@ -79,3 +79,45 @@ quit;
 /* Visualizando os resultados */
 proc print data=final;
 run;
+
+
+
+
+/* Criando a base de todos os pares possíveis de IDs */
+proc sql;
+    create table todos_pares as
+    select a.id as documento_1, b.id as documento_2
+    from distintos a, distintos b;
+
+/* Criando as tabelas reversas e combinando com a tabela original */
+    create table gf_full as
+    select * from gf
+    union
+    select * from gf reverse;
+
+    create table email_full as
+    select * from email
+    union
+    select * from email_reverse;
+
+    create table cep_full as
+    select * from cep
+    union
+    select * from cep_reverse;
+
+/* Realizando as mesclagens utilizando a nova tabela de pares */
+    create table final as
+    select p.documento_1, p.documento_2,
+           g.documento_parentestco as rel_email,
+           e.email as rel_cep,
+           c.cep
+    from todos_pares p
+    left join gf_full g on p.documento_1 = g.documento_1 and p.documento_2 = g.documento_2
+    left join email_full e on p.documento_1 = e.documento_1 and p.documento_2 = e.documento_2
+    left join cep_full c on p.documento_1 = c.documento_1 and p.documento_2 = c.documento_2;
+quit;
+
+/* Visualizando os resultados */
+proc print data=final;
+run;
+
