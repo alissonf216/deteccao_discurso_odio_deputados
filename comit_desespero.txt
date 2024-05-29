@@ -1,0 +1,81 @@
+/* Criando as tabelas de dados */
+data gf;
+    input documento_1 $ documento_2 $ documento_parentestco $;
+    datalines;
+aaa kkk ooo
+bbb jjj ppp
+aaa hhh mmm
+;
+run;
+
+data email;
+    input documento_1 $ documento_2 $ email $;
+    datalines;
+aaa kkk bola@bom.com
+bbb jjj faca@bom.com
+aaa hhh bola@bom.com
+;
+run;
+
+data cep;
+    input documento_1 $ documento_2 $ cep;
+    datalines;
+aaa kkk 100
+bbb jjj 200
+aaa hhh 100
+;
+run;
+
+data distintos;
+    input id $;
+    datalines;
+aaa
+bbb
+kkk
+jjj
+hhh
+;
+run;
+
+/* Gerando as relações de ida e volta */
+proc sql;
+    create table gf_reverse as
+    select documento_2 as documento_1, documento_1 as documento_2, documento_parentestco
+    from gf;
+    
+    create table email_reverse as
+    select documento_2 as documento_1, documento_1 as documento_2, email
+    from email;
+    
+    create table cep_reverse as
+    select documento_2 as documento_1, documento_1 as documento_2, cep
+    from cep;
+    
+    /* Concatenando os DataFrames originais e invertidos e removendo duplicatas */
+    create table gf_full as
+    select * from gf
+    union
+    select * from gf_reverse;
+    
+    create table email_full as
+    select * from email
+    union
+    select * from email_reverse;
+    
+    create table cep_full as
+    select * from cep
+    union
+    select * from cep_reverse;
+    
+    /* Realizando as mesclagens */
+    create table final as
+    select d.id, g.documento_2, g.documento_parentestco as rel_email, e.email as rel_cep, c.cep
+    from distintos d
+    left join gf_full g on d.id = g.documento_1
+    left join email_full e on d.id = e.documento_1 and g.documento_2 = e.documento_2
+    left join cep_full c on d.id = c.documento_1 and g.documento_2 = c.documento_2;
+quit;
+
+/* Visualizando os resultados */
+proc print data=final;
+run;
